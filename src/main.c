@@ -87,7 +87,7 @@ void check_particle_bounds(particle_t* particle) {
     };
     
     switch (particle->phase) {
-    case PHASE_BEFORE_SLIT:
+    case PHASE_BEFORE_SLIT: {
 	bool collision = CheckCollisionPointRec(particle->position, slit_rect);
 	
 	if (collision && GetRandomValue(0, 10) < 9) {
@@ -99,11 +99,13 @@ void check_particle_bounds(particle_t* particle) {
 	    particle->active = false;
 	}
 	break;
-    case PHASE_INSIDE_SLIT:
+    }
+    case PHASE_INSIDE_SLIT: {
 	if (particle->position.x >= SLIT_X_POSITION + SLIT_LENGTH) {
 	    particle->phase = PHASE_AFTER_SLIT;
 	}      
 	break;
+    }
     case PHASE_AFTER_SLIT:
 	if (!CheckCollisionPointRec(particle->position, (Rectangle){ 0, 0, WIDTH, HEIGHT })) {
 	    particle->active = false;
@@ -181,4 +183,3 @@ void update(float dt) {
 void processInput(void) {
     if (IsKeyPressed(KEY_Q)) CloseWindow();
 }
-

@@ -1,9 +1,8 @@
 .RECIPEPREFIX = >
 
 COMPILER = clang
-CFLAGS = -Wall -Werror -I/usr/local/include -L/usr/local/lib -lraylib
+CFLAGS = -Wall -Werror -I/usr/local/include -L/usr/local/lib -lraylib -lm
 SRC = $(wildcard src/*.c)
-TESTS = $(wildcard test/*.c)
 
 .PHONY: all run build test clean
 
